@@ -1,0 +1,568 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ``??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+%\usepackage{times}
+%\renewcommand{\familydefault}{\sfdefault}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+\usepackage{comment}
+
+% Simpler bibsection for CV sections
+% (thanks to natbib for inspiration)
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em} %1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newenvironment{bibsection}%
+        {\begin{enumerate}{}{%
+%        {\begin{list}{}{%
+       \setlength{\leftmargin}{\bibhang}%
+       \setlength{\itemindent}{-\leftmargin}%
+       \setlength{\itemsep}{\bibsep}%
+       \setlength{\parsep}{\z@}%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{enumerate}\vspace{-.6\baselineskip}}
+%        {\end{list}\vspace{-.6\baselineskip}}
+\makeatother
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+\usepackage[shortlabels]{enumitem}
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[\includegraphics[height=1.5in]{my_picutre}]{Your Name}
+%
+% the picture will be flush right across from the name.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+% The section headings
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \hyphenpenalty=1000%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+% An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*]}{\end{itemize}%
+         \vspace{-.6\baselineskip}}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+% An itemize-style list with little space between items
+\newenvironment{innerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+        {\end{itemize}}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+        {\end{itemize}\vspace{-.6\baselineskip}}
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+% Uses hyperref to link DOI
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+% For \url{SOME_URL}, links SOME_URL to the url SOME_URL
+\providecommand*\url[1]{\href{#1}{#1}}
+% Same as above, but pretty-prints SOME_URL in teletype fixed-width font
+\renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+\providecommand*\email[1]{\href{mailto:#1}{#1}}
+% Same as above, but pretty-prints ADDRESS in teletype fixed-width font
+%\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    \TeX}}
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\makeheading{Henggang Cui}
+
+\section{Contact Information}
+
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table.
+%
+% ALSO: \rcollength is the width of the right column of the table
+%       (adjust it to your liking; default is 1.85in).
+%
+\newlength{\rcollength}\setlength{\rcollength}{1.4in}%
+%
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+%\href{http://www.cse.osu.edu/}%
+%     {Department of Computer Science and Engineering} & \\
+%\href{http://www.osu.edu/}{The Ohio State University}
+2220A, Collaborative Inovation Center,       & (651)403-3366 \\
+5000 Forbes Ave, Pittsburgh, PA, 15213       & \email{hengganc@ece.cmu.edu}\\
+\end{tabular}
+
+%\section{Objective}
+
+%Insert text here if you want to
+%\begin{innerlist}
+%\item More information and auxiliary documents can be found at\\\url{http://www.tedpavlic.com/facjobsearch/}
+%\end{innerlist}
+
+\section{Research Interests}
+
+{\bf Software systems for big data analytics}
+
+\section{Education}
+
+\textbf{Carnegie Mellon University},
+Pittsburgh, PA
+\begin{outerlist}
+
+\item[] Ph.D.,
+             {Parallel Data Lab, Electrical and Computer Engineering},
+             \emph{Expected:} 2018
+        \begin{innerlist}
+        %\item Thesis Topic: \emph{Spatiotemporal Gradient Modeling with Applications}
+        \item Advisor:
+              %\href{http://www.biostat.umn.edu/~brad/}
+                   {Greg Ganger}
+        \end{innerlist}
+
+\end{outerlist}
+\vspace{.1in}
+%\href{http://www.mnsu.edu}
+{\textbf{Tsinghua University}},
+Beijing, China
+\begin{outerlist}
+\item[] B.S.,
+        %\href{http://www.cset.mnsu.edu/mathstat/}
+             {Electronic Information Science and Technology}, July 2012
+        \begin{innerlist}
+        \item \emph{Outstanding Graduate Award}
+        \item \emph{Outstanding Diploma Thesis Award}
+        \end{innerlist}
+
+\end{outerlist}
+
+\section{Research Experience}
+
+\textbf{Research Assistant} \hfill {Aug 2012 to present}\\
+Parallel Data Lab, Carnegie Mellon University\\
+Advisor: Greg Ganger
+\begin{innerlist}
+\item[] {\bf LazyTable}:
+    A parameter server library for parallel Machine Learning.
+    LazyTable manages the model parameters for data parallel ML applications,
+    where a collection of ML workers concurrently iterate on
+    partitioned input data and make adjustments to the shared model parameters.
+    We implemented several representative ML applications on top of LazyTable,
+    including movie recommendation (Matrix Factorization using SGD),
+    topic modeling (LDA using Gibbs Sampling),
+    image classification (Multi-class Logistic Regression using SGD), and PageRank.
+\vspace{.1in}
+\item[] {\bf Stale Synchronous Parallel (SSP)}:
+    A model for synchronizing the progress of parallel ML workers.
+    SSP is a middle ground between the BSP approach (where the workers wait at barriers)
+    and the Async approach (where the workers never wait).
+    SSP allows each worker to be a bounded number of iterations ahead of the slowest one,
+    thus making data staleness a tunable parameter and
+    allowing us to explicitly trade data freshness for speed.
+    Our experiments show that SSP helps reduce the convergence time a lot for our ML benchmarks. \\
+    \emph{Papers published in NIPS'13 and ATC'14. SSP is supported in LazyTable.}
+\vspace{.1in}
+\item[] {\bf Parameter server for iterative ML}:
+    Many iterative ML algorithms, including PageRank, SGD, and Gibbs Sampling,
+    have the property that the same (or nearly the same) sequence of accesses
+    is applied to the parameter server every iteration.
+    This repeated sequence can be exploited to improve the performance of parameter servers.
+    We implemented and evaluated two methods to collect
+    this repeating access sequence from the application,
+    as well as five specializations to speed up parameter servers using the collected information.
+    Our experiments show that these optimizations greatly reduce the total run time of our application benchmarks by up to 98\%. \\
+    \emph{Paper published in SoCC'14. The ideas are implemented in LazyTable.}
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Research Intern} \hfill {May 2014 to Aug 2014}\\
+System Group, HP Labs\\
+Mentor: Kimberly Keeton
+\begin{innerlist}
+\item[] {\bf Ingest-time transformation for big time series data}:
+    We designed and implemented a database system for big time series data analytics.
+    The system is able to support interactive analytical queries
+    with sub-second latencies on both recent data and historical data.
+    Our approach is to apply \emph{transformations} to the data at ingest time,
+    so that future queries can be answered using transformed data with much lower latencies.
+    We have implemented several representative use cases in our system.
+    For example, wavelet transformation can be used to
+    represent numerical time-series data in a compact form,
+    and correlation queries can be directly answered
+    from the wavelet coefficients with much lower latency.
+    Count-min sketching can be used to represent counting information at large scales,
+    such as occurrence counts of IP addresses.
+    Anomaly detection can also be naturally defined as ingest-time transformations.
+    Our experiments show that our approach can speed up our analytical query benchmarks
+    by over an order of magnitude, with minimal impact on ingest throughput. \\
+    \emph{Paper to be presented in SoCC'15}.
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Research Assistant} \hfill {May 2010 to Jul 2012}\\
+Cloud Computing Lab, Tsinghua University\\
+Advisor: Dan Li
+\begin{innerlist}
+\item[] {\bf Multi-class Bloom Filter (MBF)}:
+    We extended the concept of standard bloom filters to MBF,
+    where different elements are assigned different numbers of hashes
+    in the BF array, based on their prior probabilities,
+    reducing the false positive rate.
+    In this work, we also prove the feasibility of using MBF to
+    implement scalable multicast packet switching in data centers networks.\\
+    \emph{Paper published in ICNP'11}.
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Research Assistant (Internship)} \hfill {Jun 2011 to Aug 2011}\\
+Photonics Networking Research Laboratory, Stanford University\\
+Advisors: Moises Ribeiro and Leonid Kazovsky
+\begin{innerlist}
+\item[] {\bf Optical Cross-braced Hypercube (OCH)}:
+    A traffic-adaptive data center architecture that adds simple 2x2 optical switches
+    to a traditional hypercube topology.
+    This architecture can adaptively give short-cuts to the heavy traffic flows
+    and thus reduce their impact on the intermediary servers as well as the total traffic in the network. \\
+    \emph{Paper published in OFC'12}.
+\end{innerlist}
+
+
+\section{Publications}
+
+\vspace{-.1275in}
+\begin{bibsection}
+    \item {\bf Henggang Cui}, Kimberly Keeton, Indrajit Roy, Krishnamurthy Viswanathan, and Gregory R. Ganger.\\
+        Using Data Transformations for Low-latency Time Series Analysis.\\
+        In \emph{ACM Symposium on Cloud Computing (SoCC'15)},
+        2015.
+    \item Jinliang Wei, Wei Dai, Aurick Qiao, Qirong Ho, {\bf Henggang Cui},
+        Gregory R. Ganger, Phillip B. Gibbons, Garth A. Gibson, Eric P. Xing.\\
+        Managed Communication and Consistency for Fast Data-Parallel Iterative Analytics.\\
+        In \emph{ACM Symposium on Cloud Computing (SoCC'15)},
+        2015.
+    \item {\bf Henggang Cui}, Alexey Tumanov, Jinliang Wei, Lianghong Xu, Wei Dai,
+        Jesse Haber-Kucharsky, Qirong Ho, Gregory R. Ganger, Phillip B. Gibbons, Garth A. Gibson, and Eric P. Xing.\\
+        Exploiting Iterative-ness for Parallel ML Computations.\\
+        In \emph{ACM Symposium on Cloud Computing (SoCC'14)},
+        2014.
+    \item {\bf Henggang Cui}, James Cipar, Qirong Ho, Jin Kyu Kim, Seunghak Lee, Abhimanu Kumar,
+        Jinliang Wei, Wei Dai, Gregory R. Ganger, Phillip B. Gibbons, Garth A. Gibson, and Eric P. Xing.\\
+        Exploiting Bounded Staleness to Speed Up Big Data Analytics.\\
+        In \emph{USENIX Annual Technical Conference (ATC'14)},
+        2014.
+    \item Qirong Ho, James Cipar, {\bf Henggang Cui}, Jin Kyu Kim, Seunghak Lee,
+        Phillip B. Gibbons, Garth A. Gibson, Gregory R. Ganger, and Eric P. Xing.\\
+        More Effective Distributed ML via a Stale Synchronous Parallel Parameter Server.\\
+        In \emph{Neural Information Processing Systems (NIPS'13)},
+        2013.
+    \item {\bf Henggang Cui}, Danielle Rasooly, Moises R. N. Ribeiro, and Leonid Kazovsky.\\
+        Optically Cross-Braced Hypercube: A Reconfigurable Physical Layer for
+        Interconnects and Server-Centric Datacenters.\\
+        In \emph{Optical Fiber Communication Conference and Exposition (OFC/NFOEC)},
+        2012.
+    \item Dan Li, {\bf Henggang Cui}, Yan Hu, Yong Xia, and Xin Wang.\\
+        Scalable Data Center Multicast using Multi-class Bloom Filter.\\
+        In \emph{19th IEEE International Conference on Network Protocols (ICNP'11)},
+        2011.
+\end{bibsection}
+
+\section{Presentations}
+
+Exploiting Iterative-ness for Parallel ML Computations \\
+    In \emph{SOCC 2014}, Seattle WA \hfill Nov 2014
+\vspace{.1in}
+
+Exploiting Iterative-ness for Parallel ML Computations \\
+    In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2014
+\vspace{.1in}
+
+Ingest-time Transformations in Time Series Database \\
+    In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2014
+\vspace{.1in}
+
+Exploiting Bounded Staleness to Speed Up Big Data Analytics \\
+    In \emph{ATC 2014}, Philadelphia, PA \hfill Jun 2014
+\vspace{.1in}
+
+LazyTable: Distributed Machine Learning with the Stale Synchronous Parallel Model \\
+    In \emph{SOSP 2013 WIP Talk}, Farmington, PA \hfill Nov 2013
+\vspace{.1in}
+
+Exploiting Bounded Staleness to Speed up Big Data Analytics \\
+    In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2013
+
+\section{Awards}
+
+\textbf{Travel Awards}
+\begin{innerlist}
+\item[] SoCC 2014, Seattle, WA \hfill Nov 2014
+\item[] ATC 2014, Philadelphia, PA \hfill Jun 2014
+\item[] SOSP 2013, Farmington, PA \hfill Nov 2013
+\end{innerlist}
+
+\halfblankline
+
+\textbf{Student Awards --- Tsinghua University}
+\begin{innerlist}
+\item[] Outstanding Graduate, Tsinghua University  \hfill Jul 2012
+\item[] Outstanding Graduate, Beijing, China \hfill Jul 2012
+\item[] Outstanding Diploma Thesis, Tsinghua University \hfill Jul 2012
+\item[] National Scholarship, China \hfill Nov 2011
+\item[] National Scholarship, China \hfill Nov 2010
+\end{innerlist}
+
+\section{Courses}
+
+\textbf{Carnegie Mellon University (GPA 3.91/4)}
+
+15712 Advanced Topics in Operating Systems, Fall 2014. Course project:
+    \begin{innerlist}
+    \item[] Straggler Mitigation in Parallel ML
+    \end{innerlist}
+\vspace{.1in}
+
+10780 Graduate Artificial Intelligence, Spring 2014. Course project:
+    \begin{innerlist}
+    \item[] An online method adaptively tuning data staleness bound under SSP model
+    \end{innerlist}
+\vspace{.1in}
+
+15799b Advanced Topics in Database Systems, Fall 2013. Course project:
+    \begin{innerlist}
+    \item[] Iterativeness-aware optimization for big data analytics
+    \end{innerlist}
+\vspace{.1in}
+
+18746 Storage Systems, Spring 2013. Course project:
+    \begin{innerlist}
+    \item[] Cloudfs, a hybrid file system integrating solid-state devices and cloud storage
+    \end{innerlist}
+\vspace{.1in}
+
+15750 Graduate Algorithms, Spring 2013.
+    \begin{innerlist}
+    \item[]
+    \end{innerlist}
+
+15799a Advanced Topics in OS Engineering, Fall 2012. Course project:
+    \begin{innerlist}
+    \item[] 1. Pebbles, implementing a Unix-like kernel from scratch
+    \item[] 2. PebPeb, paravirtualization of Pebbles kernel
+    \end{innerlist}
+\vspace{.1in}
+
+10701 Machine Learning, Fall 2012. Course project:
+    \begin{innerlist}
+    \item[] Implementation and comparison of parallel EM on GraphLab, Spark, and Piccolo
+    \end{innerlist}
+\vspace{.1in}
+
+
+\section{Teaching Experience}
+
+\textbf{Teaching Assistant}
+
+18746/15746 Storage Systems  \hfill Spring 2015
+\vspace{.1in}
+
+
+
+\section{Skills}
+
+\textbf{Computer Programming}
+\begin{innerlist}
+    \item[] C, C$+$$+$, Python, Java, Matlab, Perl, Scala
+\end{innerlist}
+\vspace{.1in}
+
+\textbf{Software Systems}
+\begin{innerlist}
+    \item[] git, LaTeX, svn, GraphLab, HBase, OpenTSDB, Spark, Hadoop
+\end{innerlist}
+\vspace{.1in}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------%
+% The following is copyright and licensing information for
+% redistribution of this LaTeX source code; it also includes a liability
+% statement. If this source code is not being redistributed to others,
+% it may be omitted. It has no effect on the function of the above code.
+%----------------------------------------------------------------------%
+% Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+%
+% Unless otherwise expressly stated, this work is licensed under the
+% Creative Commons Attribution-Noncommercial 3.0 United States License. To
+% view a copy of this license, visit
+% http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+% Creative Commons, 171 Second Street, Suite 300, San Francisco,
+% California, 94105, USA.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+% OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+% MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+% IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+% CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+% TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+% SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%----------------------------------------------------------------------%
