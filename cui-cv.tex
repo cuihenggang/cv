@@ -257,7 +257,7 @@
 
 \section{Research Interests}
 
-{\bf Software systems for big data analytics}
+{\bf Software systems for large scale machine learning}
 
 \section{Education}
 
@@ -267,7 +267,7 @@ Pittsburgh, PA
 
 \item[] Ph.D.,
              {Parallel Data Lab, Electrical and Computer Engineering},
-             \emph{Expected:} 2018
+             \emph{Expected:} 2017
         \begin{innerlist}
         %\item Thesis Topic: \emph{Spatiotemporal Gradient Modeling with Applications}
         \item Advisor:
@@ -297,36 +297,20 @@ Beijing, China
 Parallel Data Lab, Carnegie Mellon University\\
 Advisor: Greg Ganger
 \begin{innerlist}
-\item[] {\bf LazyTable}:
-    A parameter server library for parallel Machine Learning.
-    LazyTable manages the model parameters for data parallel ML applications,
-    where a collection of ML workers concurrently iterate on
-    partitioned input data and make adjustments to the shared model parameters.
-    We implemented several representative ML applications on top of LazyTable,
-    including movie recommendation (Matrix Factorization using SGD),
-    topic modeling (LDA using Gibbs Sampling),
-    image classification (Multi-class Logistic Regression using SGD), and PageRank.
+\item[] {\bf LazyTable: a parameter server system for data-parallel machine learning.}
+    LazyTable manages the global model parameter data for data-parallel ML applications, where a collection of ML workers concurrently iterate on partitioned training data and make adjustments to the shared parameter data. We have implemented several representative ML applications on top of LazyTable, including image classification (with convolutional neural networks), movie recommendation (with matrix factorization), topic modeling (with LDA), and PageRank.
 \vspace{.1in}
-\item[] {\bf Stale Synchronous Parallel (SSP)}:
-    A model for synchronizing the progress of parallel ML workers.
-    SSP is a middle ground between the BSP approach (where the workers wait at barriers)
-    and the Async approach (where the workers never wait).
-    SSP allows each worker to be a bounded number of iterations ahead of the slowest one,
-    thus making data staleness a tunable parameter and
-    allowing us to explicitly trade data freshness for speed.
-    Our experiments show that SSP helps reduce the convergence time a lot for our ML benchmarks. \\
-    \emph{Papers published in NIPS'13 and ATC'14. SSP is supported in LazyTable.}
+\item[] {\bf Stale Synchronous Parallel (SSP): trading data freshness for speed.}
+    SSP is a flexible consistency model for synchronizing the progress of parallel ML workers. It is a middle ground between the traditional BSP approach (where the workers wait at barriers) and the Asynchrony approach (where the workers never wait). SSP allows each worker to be a bounded number of iterations ahead of the slowest one, thus making data staleness a tunable parameter and allowing us to explicitly trade data freshness for speed. Our experiments show that SSP helps reduce the convergence time a lot for many of our ML benchmarks. \\
+    \emph{Work published in NIPS'13 and ATC'14. The ideas are implemented in LazyTable.}
 \vspace{.1in}
-\item[] {\bf Parameter server for iterative ML}:
-    Many iterative ML algorithms, including PageRank, SGD, and Gibbs Sampling,
-    have the property that the same (or nearly the same) sequence of accesses
-    is applied to the parameter server every iteration.
-    This repeated sequence can be exploited to improve the performance of parameter servers.
-    We implemented and evaluated two methods to collect
-    this repeating access sequence from the application,
-    as well as five specializations to speed up parameter servers using the collected information.
-    Our experiments show that these optimizations greatly reduce the total run time of our application benchmarks by up to 98\%. \\
-    \emph{Paper published in SoCC'14. The ideas are implemented in LazyTable.}
+\item[] {\bf IterStore: parameter server for iterative ML.}
+    Many iterative ML algorithms, including SGD, PageRank, and Gibbs Sampling, have the property that the same (or nearly the same) sequence of accesses is applied to the parameter server every iteration. This repeating sequence can be exploited to improve the performance of parameter servers. We implemented and evaluated two methods to collect this repeating access sequence from the application, as well as five specializations to speed up parameter servers using the collected information. Our experiments show that these optimizations greatly reduce the total run time of our application benchmarks by up to 98\%. \\
+    \emph{Work published in SoCC'14.}
+\vspace{.1in}
+\item[] {\bf GeePS: parameter server for deep learning on GPUs.}
+    Deep neural networks are often trained using GPUs, but scaling GPU applications on multiple machines is challenging, because of the limited GPU memory size and expensive data movement overheads between GPU and CPU memory. GeePS is a parameter server that is specialized for GPU applications (especially deep learning). It allows the application to access parameter data directly through GPU memory, hiding data movement latencies from the application. GeePS also provides GPU memory management support that allows the training of neural networks that do not fit in GPU memory. To evaluate the performance, we have linked GeePS with Caffe, a state-of-art single-machine deep learning system, and our experiments show that GeePS provides almost linear scalability from single-machine Caffe (13$\times$ more training throughput with 16 machines). \\
+    \emph{Work published in EuroSys'16.}
 \end{innerlist}
 
 \halfblankline
@@ -335,7 +319,7 @@ Advisor: Greg Ganger
 System Group, HP Labs\\
 Mentor: Kimberly Keeton
 \begin{innerlist}
-\item[] {\bf Ingest-time transformation for big time series data}:
+\item[] {\bf Ingest-time transformation for big time series data.}
     We designed and implemented a database system for big time series data analytics.
     The system is able to support interactive analytical queries
     with sub-second latencies on both recent data and historical data.
@@ -351,7 +335,7 @@ Mentor: Kimberly Keeton
     Anomaly detection can also be naturally defined as ingest-time transformations.
     Our experiments show that our approach can speed up our analytical query benchmarks
     by over an order of magnitude, with minimal impact on ingest throughput. \\
-    \emph{Paper to be presented in SoCC'15}.
+    \emph{Work published in SoCC'15}.
 \end{innerlist}
 
 \halfblankline
@@ -360,14 +344,14 @@ Mentor: Kimberly Keeton
 Cloud Computing Lab, Tsinghua University\\
 Advisor: Dan Li
 \begin{innerlist}
-\item[] {\bf Multi-class Bloom Filter (MBF)}:
+\item[] {\bf Multi-class Bloom Filter (MBF).}
     We extended the concept of standard bloom filters to MBF,
     where different elements are assigned different numbers of hashes
     in the BF array, based on their prior probabilities,
     reducing the false positive rate.
     In this work, we also prove the feasibility of using MBF to
     implement scalable multicast packet switching in data centers networks.\\
-    \emph{Paper published in ICNP'11}.
+    \emph{Work published in ICNP'11}.
 \end{innerlist}
 
 \halfblankline
@@ -376,12 +360,12 @@ Advisor: Dan Li
 Photonics Networking Research Laboratory, Stanford University\\
 Advisors: Moises Ribeiro and Leonid Kazovsky
 \begin{innerlist}
-\item[] {\bf Optical Cross-braced Hypercube (OCH)}:
+\item[] {\bf Optical Cross-braced Hypercube (OCH).}
     A traffic-adaptive data center architecture that adds simple 2x2 optical switches
     to a traditional hypercube topology.
     This architecture can adaptively give short-cuts to the heavy traffic flows
     and thus reduce their impact on the intermediary servers as well as the total traffic in the network. \\
-    \emph{Paper published in OFC'12}.
+    \emph{Work published in OFC'12}.
 \end{innerlist}
 
 
@@ -389,6 +373,10 @@ Advisors: Moises Ribeiro and Leonid Kazovsky
 
 \vspace{-.1275in}
 \begin{bibsection}
+    \item {\bf Henggang Cui}, Hao Zhang, Gregory R. Ganger, Phillip B. Gibbons, and Eric P. Xing.\\
+        GeePS: Scalable Deep Learning on Distributed GPUs with a GPU-Specialized Parameter Server.\\
+        In \emph{ACM European Conference on Computer Systems (EuroSys'16)},
+        2016.
     \item {\bf Henggang Cui}, Kimberly Keeton, Indrajit Roy, Krishnamurthy Viswanathan, and Gregory R. Ganger.\\
         Using Data Transformations for Low-latency Time Series Analysis.\\
         In \emph{ACM Symposium on Cloud Computing (SoCC'15)},
@@ -426,17 +414,25 @@ Advisors: Moises Ribeiro and Leonid Kazovsky
 
 \section{Presentations}
 
-Exploiting Iterative-ness for Parallel ML Computations \\
-    In \emph{SOCC 2014}, Seattle WA \hfill Nov 2014
+GeePS: Scalable Deep Learning on Distributed GPUs with a GPU-Specialized Parameter Server \\
+    In \emph{EuroSys 2016}, London, UK \hfill Apr 2016
+\vspace{.1in}
+
+Using Data Transformations for Low-latency Time Series Analysis \\
+    In \emph{SoCC 2015}, Kohala Coast, HI \hfill Aug 2015
 \vspace{.1in}
 
 Exploiting Iterative-ness for Parallel ML Computations \\
-    In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2014
+    In \emph{SoCC 2014}, Seattle, WA \hfill Nov 2014
 \vspace{.1in}
 
-Ingest-time Transformations in Time Series Database \\
-    In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2014
-\vspace{.1in}
+% Exploiting Iterative-ness for Parallel ML Computations \\
+    % In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2014
+% \vspace{.1in}
+
+% Ingest-time Transformations in Time Series Database \\
+    % In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2014
+% \vspace{.1in}
 
 Exploiting Bounded Staleness to Speed Up Big Data Analytics \\
     In \emph{ATC 2014}, Philadelphia, PA \hfill Jun 2014
@@ -446,19 +442,10 @@ LazyTable: Distributed Machine Learning with the Stale Synchronous Parallel Mode
     In \emph{SOSP 2013 WIP Talk}, Farmington, PA \hfill Nov 2013
 \vspace{.1in}
 
-Exploiting Bounded Staleness to Speed up Big Data Analytics \\
-    In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2013
+% Exploiting Bounded Staleness to Speed up Big Data Analytics \\
+    % In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2013
 
 \section{Awards}
-
-\textbf{Travel Awards}
-\begin{innerlist}
-\item[] SoCC 2014, Seattle, WA \hfill Nov 2014
-\item[] ATC 2014, Philadelphia, PA \hfill Jun 2014
-\item[] SOSP 2013, Farmington, PA \hfill Nov 2013
-\end{innerlist}
-
-\halfblankline
 
 \textbf{Student Awards --- Tsinghua University}
 \begin{innerlist}
@@ -469,19 +456,35 @@ Exploiting Bounded Staleness to Speed up Big Data Analytics \\
 \item[] National Scholarship, China \hfill Nov 2010
 \end{innerlist}
 
+\halfblankline
+
+\textbf{Travel Awards}
+\begin{innerlist}
+\item[] EuroSys 2016, London, UK \hfill Apr 2016
+\item[] SoCC 2014, Seattle, WA \hfill Nov 2014
+\item[] ATC 2014, Philadelphia, PA \hfill Jun 2014
+\item[] SOSP 2013, Farmington, PA \hfill Nov 2013
+\end{innerlist}
+
 \section{Courses}
 
-\textbf{Carnegie Mellon University (GPA 3.91/4)}
+\textbf{Carnegie Mellon University (GPA 3.93/4)}
+
+18749 Building Reliable Distributed Systems, Fall 2015. Course project:
+    \begin{innerlist}
+    \item[] Elastic machine learning on temporarily available/affordable resources
+    \end{innerlist}
+\vspace{.1in}
 
 15712 Advanced Topics in Operating Systems, Fall 2014. Course project:
     \begin{innerlist}
-    \item[] Straggler Mitigation in Parallel ML
+    \item[] Straggler mitigation in parallel machine learning
     \end{innerlist}
 \vspace{.1in}
 
 10780 Graduate Artificial Intelligence, Spring 2014. Course project:
     \begin{innerlist}
-    \item[] An online method adaptively tuning data staleness bound under SSP model
+    \item[] An online method for adaptive data staleness tuning
     \end{innerlist}
 \vspace{.1in}
 
@@ -535,7 +538,7 @@ Exploiting Bounded Staleness to Speed up Big Data Analytics \\
 
 \textbf{Software Systems}
 \begin{innerlist}
-    \item[] git, LaTeX, svn, GraphLab, HBase, OpenTSDB, Spark, Hadoop
+    \item[] Caffe, GraphLab, HBase, OpenTSDB, Spark, Hadoop, git, LaTeX, svn
 \end{innerlist}
 \vspace{.1in}
 
