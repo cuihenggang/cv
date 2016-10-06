@@ -297,12 +297,12 @@ Beijing, China
 Parallel Data Lab, Carnegie Mellon University\\
 Advisor: Greg Ganger
 \begin{innerlist}
-\item[] {\bf LazyTable: a parameter server system for data-parallel machine learning.}
-    LazyTable manages the global model parameter data for data-parallel ML applications, where a collection of ML workers concurrently iterate on partitioned training data and make adjustments to the shared parameter data. We have implemented several representative ML applications on top of LazyTable, including image classification (with convolutional neural networks), movie recommendation (with matrix factorization), topic modeling (with LDA), and PageRank.
-\vspace{.1in}
+% \item[] {\bf LazyTable: a parameter server system for data-parallel machine learning.}
+    % LazyTable manages the global model parameter data for data-parallel ML applications, where a collection of ML workers concurrently iterate on partitioned training data and make adjustments to the shared parameter data. We have implemented several representative ML applications on top of LazyTable, including image classification (with convolutional neural networks), movie recommendation (with matrix factorization), topic modeling (with LDA), and PageRank.
+% \vspace{.1in}
 \item[] {\bf Stale Synchronous Parallel (SSP): trading data freshness for speed.}
     SSP is a flexible consistency model for synchronizing the progress of parallel ML workers. It is a middle ground between the traditional BSP approach (where the workers wait at barriers) and the Asynchrony approach (where the workers never wait). SSP allows each worker to be a bounded number of iterations ahead of the slowest one, thus making data staleness a tunable parameter and allowing us to explicitly trade data freshness for speed. Our experiments show that SSP helps reduce the convergence time a lot for many of our ML benchmarks. \\
-    \emph{Work published in NIPS'13 and ATC'14. The ideas are implemented in LazyTable.}
+    \emph{Work published in NIPS'13 and ATC'14.}
 \vspace{.1in}
 \item[] {\bf IterStore: parameter server for iterative ML.}
     Many iterative ML algorithms, including SGD, PageRank, and Gibbs Sampling, have the property that the same (or nearly the same) sequence of accesses is applied to the parameter server every iteration. This repeating sequence can be exploited to improve the performance of parameter servers. We implemented and evaluated two methods to collect this repeating access sequence from the application, as well as five specializations to speed up parameter servers using the collected information. Our experiments show that these optimizations greatly reduce the total run time of our application benchmarks by up to 98\%. \\
@@ -356,7 +356,7 @@ Advisor: Dan Li
 
 \halfblankline
 
-\textbf{Research Assistant (Internship)} \hfill {Jun 2011 to Aug 2011}\\
+\textbf{Research Intern} \hfill {Jun 2011 to Aug 2011}\\
 Photonics Networking Research Laboratory, Stanford University\\
 Advisors: Moises Ribeiro and Leonid Kazovsky
 \begin{innerlist}
@@ -368,11 +368,49 @@ Advisors: Moises Ribeiro and Leonid Kazovsky
     \emph{Work published in OFC'12}.
 \end{innerlist}
 
+\section{Presentations}
 
+GeePS: Scalable Deep Learning on Distributed GPUs with a GPU-Specialized Parameter Server \\
+    In \emph{EuroSys 2016}, London, UK \hfill Apr 2016
+\vspace{.1in}
+
+Using Data Transformations for Low-latency Time Series Analysis \\
+    In \emph{SoCC 2015}, Kohala Coast, HI \hfill Aug 2015
+\vspace{.1in}
+
+Exploiting Iterative-ness for Parallel ML Computations \\
+    In \emph{SoCC 2014}, Seattle, WA \hfill Nov 2014
+\vspace{.1in}
+
+% Exploiting Iterative-ness for Parallel ML Computations \\
+    % In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2014
+% \vspace{.1in}
+
+% Ingest-time Transformations in Time Series Database \\
+    % In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2014
+% \vspace{.1in}
+
+Exploiting Bounded Staleness to Speed Up Big Data Analytics \\
+    In \emph{ATC 2014}, Philadelphia, PA \hfill Jun 2014
+\vspace{.1in}
+
+LazyTable: Distributed Machine Learning with the Stale Synchronous Parallel Model \\
+    In \emph{SOSP 2013 WIP Talk}, Farmington, PA \hfill Nov 2013
+\vspace{.1in}
+
+% Exploiting Bounded Staleness to Speed up Big Data Analytics \\
+    % In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2013
+
+\pagebreak
 \section{Publications}
 
 \vspace{-.1275in}
 \begin{bibsection}
+    \item Aaron Harlap, {\bf Henggang Cui}, Wei Dai, Jinliang Wei,
+        Gregory R. Ganger, Phillip B. Gibbons, Garth A. Gibson, and Eric P. Xing.\\
+        Addressing the straggler problem for iterative convergent parallel ML.\\
+        In \emph{ACM Symposium on Cloud Computing (SoCC'16)},
+        2016.
     \item {\bf Henggang Cui}, Hao Zhang, Gregory R. Ganger, Phillip B. Gibbons, and Eric P. Xing.\\
         GeePS: Scalable Deep Learning on Distributed GPUs with a GPU-Specialized Parameter Server.\\
         In \emph{ACM European Conference on Computer Systems (EuroSys'16)},
@@ -411,39 +449,6 @@ Advisors: Moises Ribeiro and Leonid Kazovsky
         In \emph{19th IEEE International Conference on Network Protocols (ICNP'11)},
         2011.
 \end{bibsection}
-
-\section{Presentations}
-
-GeePS: Scalable Deep Learning on Distributed GPUs with a GPU-Specialized Parameter Server \\
-    In \emph{EuroSys 2016}, London, UK \hfill Apr 2016
-\vspace{.1in}
-
-Using Data Transformations for Low-latency Time Series Analysis \\
-    In \emph{SoCC 2015}, Kohala Coast, HI \hfill Aug 2015
-\vspace{.1in}
-
-Exploiting Iterative-ness for Parallel ML Computations \\
-    In \emph{SoCC 2014}, Seattle, WA \hfill Nov 2014
-\vspace{.1in}
-
-% Exploiting Iterative-ness for Parallel ML Computations \\
-    % In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2014
-% \vspace{.1in}
-
-% Ingest-time Transformations in Time Series Database \\
-    % In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2014
-% \vspace{.1in}
-
-Exploiting Bounded Staleness to Speed Up Big Data Analytics \\
-    In \emph{ATC 2014}, Philadelphia, PA \hfill Jun 2014
-\vspace{.1in}
-
-LazyTable: Distributed Machine Learning with the Stale Synchronous Parallel Model \\
-    In \emph{SOSP 2013 WIP Talk}, Farmington, PA \hfill Nov 2013
-\vspace{.1in}
-
-% Exploiting Bounded Staleness to Speed up Big Data Analytics \\
-    % In \emph{Parallel Data Lab Retreat}, Bedford Springs, PA \hfill Oct 2013
 
 \section{Awards}
 
@@ -523,9 +528,11 @@ LazyTable: Distributed Machine Learning with the Stale Synchronous Parallel Mode
 
 \textbf{Teaching Assistant}
 
-18746/15746 Storage Systems  \hfill Spring 2015
+18746/15746 Storage Systems  \hfill Spring 2015 and Fall 2016
 \vspace{.1in}
 
+% 18746/15746 Storage Systems  \hfill Fall 2016
+% \vspace{.1in}
 
 
 \section{Skills}
