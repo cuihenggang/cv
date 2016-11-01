@@ -306,13 +306,28 @@ Advisor: Greg Ganger
     Many ML algorithms, including SGD, PageRank, and Gibbs Sampling, have the \emph{iterativeness} property that the same (or nearly the same) sequence of parameter data accesses is applied to the parameter server every iteration. This repeating access sequence can be exploited to improve the parameter server throughput. We designed an efficient method to collect the repeating access sequence from the application, as well as five parameter server optimizations using the collected information, including prefetching, contiguous marshalling-free data storage, locality and numa-aware data placement, and specialized caching policy. Our experiments show that these optimizations greatly reduce the total run time of our application benchmarks by up to 50$\times$. \\
     \emph{Work published at SoCC'14.}
 \vspace{.1in}
-\item[] {\bf GeePS: Parameter Server for Deep Learning on GPUs.}
+\item[] {\bf GeePS: Specialized Parameter Server for Deep Learning on GPUs.}
     Deep learning tasks are often performed on GPUs, but scaling GPU applications to multiple GPU machines is challenging, because of the limited GPU memory capacity and expensive data movement overheads between GPU and CPU memory. GeePS is a parameter server that is specialized for GPU applications (especially deep learning). It allows the application to access parameter data directly through GPU memory, hiding data movement latencies from the application. GeePS also provides GPU memory management support that allows the training of deep neural networks that do not fit in GPU memory, by efficiently swapping data to/from CPU memory in the background. GeePS, as a parameter server system, can be used to scale many single-machine GPU-based ML systems, such as Caffe. Our experiments show that our GeePS-supported Caffe scales almost linearly from the original single-machine Caffe (13$\times$ more training throughput with 16 machines), and is able to efficiently support neural networks that do not fit in GPU memory. \\
     \emph{Work published at EuroSys'16.} \\
     \emph{GeePS open-sourced at \url{https://github.com/cuihenggang/geeps}}
 \vspace{.1in}
 \item[] {\bf MLtuner: Automatic ML tuning.}
-    XXX \\
+    ML tasks often require the selection and tuning of many
+    \emph{training tunables}---such as
+    the learning rate, the mini-batch size, and the data
+    staleness bound---that have a significant impact on the performance.
+    We designed a MLtuner system that
+    is able to automatically tune settings for those training tunables.
+    It can be linked with existing ML systems, such as parameter servers.
+    MLtuner uses efficient snapshotting and optimization-guided
+    online trial-and-error to find good initial tunable settings as well
+    as to re-tune settings during execution.
+    Our experiments with
+    four real ML tasks, including deep learning and matrix factorization,
+    show that MLtuner automatically enables
+    performance within 40--178\% of having oracle knowledge of
+    the best tunable settings, and outperforms oracle when no single set of
+    settings are best for the entire execution. \\
     \emph{Work under submission.} \\
 \end{innerlist}
 
@@ -322,26 +337,26 @@ Advisor: Greg Ganger
 System Group, HP Labs\\
 Mentor: Kimberly Keeton
 \begin{innerlist}
-\item[] {\bf Ingest-time transformation for big time series data.}
-    We designed and implemented a database system for big time series data analytics.
-    The system is able to support interactive analytical queries
+\item[] {\bf Aperture: Ingest-Time Transformation for Big Time Series Data.}
+    Aperture is a database system for big time series data analytics,
+    and is able to support interactive analytical queries
     with sub-second latencies on both recent data and historical data.
     Our approach is to apply \emph{transformations} to the data at ingest time,
-    so that future queries can be answered using transformed data with much lower latencies.
+    so that future queries can be answered using the transformed data with much lower latencies.
     We have implemented several representative use cases in our system.
     For example, wavelet transformation can be used to
-    represent numerical time-series data in a compact form,
-    and correlation queries can be directly answered
-    from the wavelet coefficients with much lower latency.
-    Count-min sketching can be used to represent counting information at large scales,
+    compactly represent numerical time-series data,
+    and analytical queries, such as correlation search, can be directly answered
+    from the wavelet coefficients, thus with much lower latency.
+    Count-min sketching can be used to represent massive counting information,
     such as occurrence counts of IP addresses.
-    Anomaly detection can also be naturally defined as ingest-time transformations.
-    Our experiments show that our approach can speed up our analytical query benchmarks
+    Ingest-time transformation can also be used to do anomaly detection.
+    Our experiments show that our approach can speed up many analytical query benchmarks
     by over an order of magnitude, with minimal impact on ingest throughput. \\
     \emph{Work published at SoCC'15}.
 \end{innerlist}
 
-\section{Talks}
+\section{Conference Talks}
 
 GeePS: Scalable Deep Learning on Distributed GPUs with a GPU-Specialized Parameter Server \\
     In \emph{EuroSys 2016}, London, UK \hfill Apr 2016
