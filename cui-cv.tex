@@ -244,8 +244,8 @@
 %\href{http://www.cse.osu.edu/}%
 %     {Department of Computer Science and Engineering} & \\
 %\href{http://www.osu.edu/}{The Ohio State University}
-2220A, Collaborative Inovation Center,       & (651)403-3366 \\
-5000 Forbes Ave, Pittsburgh, PA, 15213       & \email{hengganc@ece.cmu.edu}\\
+2220A, Collaborative Innovation Center,       & (651)403-3366 \\
+5000 Forbes Ave, Pittsburgh, PA, 15213       & \email{hengganc@andrew.cmu.edu}\\
 \end{tabular}
 
 %\section{Objective}
@@ -257,22 +257,20 @@
 
 \section{Research Interests}
 
-{\bf Software systems for large scale machine learning}
+{\bf System Support for Large-Scale Machine Learning}
 
 \section{Education}
 
 \textbf{Carnegie Mellon University},
-Pittsburgh, PA
+Pittsburgh, PA.
 \begin{outerlist}
 
 \item[] Ph.D.,
-             {Parallel Data Lab, Electrical and Computer Engineering},
-             \emph{Expected:} 2017
+             {Electrical and Computer Engineering}, \emph{Expected:} May, 2017
         \begin{innerlist}
         %\item Thesis Topic: \emph{Spatiotemporal Gradient Modeling with Applications}
-        \item Advisor:
-              %\href{http://www.biostat.umn.edu/~brad/}
-                   {Greg Ganger}
+        \item Advisor: {Greg Ganger}
+        \item Thesis Title: {Exploiting Application Characteristics for Efficient System Support of Data-Parallel Machine Learning}
         \end{innerlist}
 
 \end{outerlist}
@@ -284,10 +282,10 @@ Beijing, China
 \item[] B.S.,
         %\href{http://www.cset.mnsu.edu/mathstat/}
              {Electronic Information Science and Technology}, July 2012
-        \begin{innerlist}
-        \item \emph{Outstanding Graduate Award}
-        \item \emph{Outstanding Diploma Thesis Award}
-        \end{innerlist}
+        % \begin{innerlist}
+        % \item {Outstanding Graduate Award}
+        % \item {Outstanding Diploma Thesis Award}
+        % \end{innerlist}
 
 \end{outerlist}
 
@@ -300,17 +298,22 @@ Advisor: Greg Ganger
 % \item[] {\bf LazyTable: a parameter server system for data-parallel machine learning.}
     % LazyTable manages the global model parameter data for data-parallel ML applications, where a collection of ML workers concurrently iterate on partitioned training data and make adjustments to the shared parameter data. We have implemented several representative ML applications on top of LazyTable, including image classification (with convolutional neural networks), movie recommendation (with matrix factorization), topic modeling (with LDA), and PageRank.
 % \vspace{.1in}
-\item[] {\bf Stale Synchronous Parallel (SSP): trading data freshness for speed.}
-    SSP is a flexible consistency model for synchronizing the progress of parallel ML workers. It is a middle ground between the traditional BSP approach (where the workers wait at barriers) and the Asynchrony approach (where the workers never wait). SSP allows each worker to be a bounded number of iterations ahead of the slowest one, thus making data staleness a tunable parameter and allowing us to explicitly trade data freshness for speed. Our experiments show that SSP helps reduce the convergence time a lot for many of our ML benchmarks. \\
-    \emph{Work published in NIPS'13 and ATC'14.}
+\item[] {\bf Stale Synchronous Parallel (SSP): Trading Data Freshness for Speed.}
+    SSP is a flexible consistency model for synchronizing the progress of parallel ML workers. It is a middle ground between the traditional BSP approach (where the workers wait at barriers) and the Asynchrony approach (where the workers never wait). SSP allows each worker to be a bounded number of iterations ahead of the slowest one, thus making data staleness a tunable parameter and allowing us to explicitly trade data freshness for speed. Our experiments show that SSP helps reduce the convergence time of many ML benchmarks, such as matrix factorization, LDA, and PageRank. \\
+    \emph{Work published at NIPS'13 and ATC'14.}
 \vspace{.1in}
-\item[] {\bf IterStore: parameter server for iterative ML.}
-    Many iterative ML algorithms, including SGD, PageRank, and Gibbs Sampling, have the property that the same (or nearly the same) sequence of accesses is applied to the parameter server every iteration. This repeating sequence can be exploited to improve the performance of parameter servers. We implemented and evaluated two methods to collect this repeating access sequence from the application, as well as five specializations to speed up parameter servers using the collected information. Our experiments show that these optimizations greatly reduce the total run time of our application benchmarks by up to 98\%. \\
-    \emph{Work published in SoCC'14.}
+\item[] {\bf IterStore: Efficient Parameter Server for Iterative ML.}
+    Many ML algorithms, including SGD, PageRank, and Gibbs Sampling, have the \emph{iterativeness} property that the same (or nearly the same) sequence of parameter data accesses is applied to the parameter server every iteration. This repeating access sequence can be exploited to improve the parameter server throughput. We designed an efficient method to collect the repeating access sequence from the application, as well as five parameter server optimizations using the collected information, including prefetching, contiguous marshalling-free data storage, locality and numa-aware data placement, and specialized caching policy. Our experiments show that these optimizations greatly reduce the total run time of our application benchmarks by up to 50$\times$. \\
+    \emph{Work published at SoCC'14.}
 \vspace{.1in}
-\item[] {\bf GeePS: parameter server for deep learning on GPUs.}
-    Deep neural networks are often trained using GPUs, but scaling GPU applications on multiple machines is challenging, because of the limited GPU memory size and expensive data movement overheads between GPU and CPU memory. GeePS is a parameter server that is specialized for GPU applications (especially deep learning). It allows the application to access parameter data directly through GPU memory, hiding data movement latencies from the application. GeePS also provides GPU memory management support that allows the training of neural networks that do not fit in GPU memory. To evaluate the performance, we have linked GeePS with Caffe, a state-of-art single-machine deep learning system, and our experiments show that GeePS provides almost linear scalability from single-machine Caffe (13$\times$ more training throughput with 16 machines). \\
-    \emph{Work published in EuroSys'16.}
+\item[] {\bf GeePS: Parameter Server for Deep Learning on GPUs.}
+    Deep learning tasks are often performed on GPUs, but scaling GPU applications to multiple GPU machines is challenging, because of the limited GPU memory capacity and expensive data movement overheads between GPU and CPU memory. GeePS is a parameter server that is specialized for GPU applications (especially deep learning). It allows the application to access parameter data directly through GPU memory, hiding data movement latencies from the application. GeePS also provides GPU memory management support that allows the training of deep neural networks that do not fit in GPU memory, by efficiently swapping data to/from CPU memory in the background. GeePS, as a parameter server system, can be used to scale many single-machine GPU-based ML systems, such as Caffe. Our experiments show that our GeePS-supported Caffe scales almost linearly from the original single-machine Caffe (13$\times$ more training throughput with 16 machines), and is able to efficiently support neural networks that do not fit in GPU memory. \\
+    \emph{Work published at EuroSys'16.} \\
+    \emph{GeePS open-sourced at \url{https://github.com/cuihenggang/geeps}}
+\vspace{.1in}
+\item[] {\bf MLtuner: Automatic ML tuning.}
+    XXX \\
+    \emph{Work under submission.} \\
 \end{innerlist}
 
 \halfblankline
@@ -335,40 +338,10 @@ Mentor: Kimberly Keeton
     Anomaly detection can also be naturally defined as ingest-time transformations.
     Our experiments show that our approach can speed up our analytical query benchmarks
     by over an order of magnitude, with minimal impact on ingest throughput. \\
-    \emph{Work published in SoCC'15}.
+    \emph{Work published at SoCC'15}.
 \end{innerlist}
 
-\halfblankline
-
-\textbf{Research Assistant} \hfill {May 2010 to Jul 2012}\\
-Cloud Computing Lab, Tsinghua University\\
-Advisor: Dan Li
-\begin{innerlist}
-\item[] {\bf Multi-class Bloom Filter (MBF).}
-    We extended the concept of standard bloom filters to MBF,
-    where different elements are assigned different numbers of hashes
-    in the BF array, based on their prior probabilities,
-    reducing the false positive rate.
-    In this work, we also prove the feasibility of using MBF to
-    implement scalable multicast packet switching in data centers networks.\\
-    \emph{Work published in ICNP'11}.
-\end{innerlist}
-
-\halfblankline
-
-\textbf{Research Intern} \hfill {Jun 2011 to Aug 2011}\\
-Photonics Networking Research Laboratory, Stanford University\\
-Advisors: Moises Ribeiro and Leonid Kazovsky
-\begin{innerlist}
-\item[] {\bf Optical Cross-braced Hypercube (OCH).}
-    A traffic-adaptive data center architecture that adds simple 2x2 optical switches
-    to a traditional hypercube topology.
-    This architecture can adaptively give short-cuts to the heavy traffic flows
-    and thus reduce their impact on the intermediary servers as well as the total traffic in the network. \\
-    \emph{Work published in OFC'12}.
-\end{innerlist}
-
-\section{Presentations}
+\section{Talks}
 
 GeePS: Scalable Deep Learning on Distributed GPUs with a GPU-Specialized Parameter Server \\
     In \emph{EuroSys 2016}, London, UK \hfill Apr 2016
@@ -454,11 +427,11 @@ LazyTable: Distributed Machine Learning with the Stale Synchronous Parallel Mode
 
 \textbf{Student Awards --- Tsinghua University}
 \begin{innerlist}
-\item[] Outstanding Graduate, Tsinghua University  \hfill Jul 2012
-\item[] Outstanding Graduate, Beijing, China \hfill Jul 2012
-\item[] Outstanding Diploma Thesis, Tsinghua University \hfill Jul 2012
-\item[] National Scholarship, China \hfill Nov 2011
-\item[] National Scholarship, China \hfill Nov 2010
+\item[] Outstanding Graduate Award of Tsinghua University  \hfill Jul 2012
+\item[] Outstanding Graduate Award of Beijing, China \hfill Jul 2012
+\item[] Outstanding Diploma Thesis Award of Tsinghua University \hfill Jul 2012
+\item[] National Scholarship of China \hfill Nov 2011
+\item[] National Scholarship of China \hfill Nov 2010
 \end{innerlist}
 
 \halfblankline
@@ -539,7 +512,7 @@ LazyTable: Distributed Machine Learning with the Stale Synchronous Parallel Mode
 
 \textbf{Computer Programming}
 \begin{innerlist}
-    \item[] C, C$+$$+$, Python, CUDA, Java, Matlab, Perl, Scala
+    \item[] C$+$$+$, Python, C, CUDA, Java, Matlab, Shell, Perl, Scala
 \end{innerlist}
 \vspace{.1in}
 
