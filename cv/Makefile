@@ -5,7 +5,7 @@ $(PROJ).pdf: $(FILES)
 	pdflatex $(PROJ).tex
 	pdflatex $(PROJ).tex
 
-show:	
+show:
 	evince $(PROJ).pdf
 
 clean:
