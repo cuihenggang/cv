@@ -91,7 +91,8 @@ Big data Systems & Caffe, GraphLab, MPI, Spark, HBase, OpenTSDB, Hadoop\\
 {Published at EuroSys'16\\
 Open-sourced at https://github.com/cuihenggang/geeps}{}
 % \small{
-\item Designed a parameter server system for distributed deep learning on a cluster of GPU machines.
+\item Designed GeePS, a parameter server system for distributed deep learning on a cluster of GPU machines.
+\item Extended Caffe, a popular deep learning system, to run on distributed machines, by using GeePS.
 \item Achieved good scalability from single-machine Caffe (13$\times$ more throughput with 16 machines), by overlapping communication with computation.
 \item Support DNNs that do not fit in GPU memory, by swapping data to/from CPU memory in the background.
 % }
@@ -104,14 +105,13 @@ Open-sourced at https://github.com/cuihenggang/iterstore}{}
 \item Observed the iterativeness characteristic of many ML applications: same access sequence every iterations.
 \item Designed an efficient method for collecting the repeating access sequence.
 \item Proposed five parameter server optimizations exploiting the collected information, including prefetching, contiguous marshalling-free data storage, locality and numa-aware data placement, and specialized caching policy.
-\item Experimented with three real ML applications (matrix factorization, LDA, and PageRank) show that these optimizations reduce completion time by up to 50$\times$.
+\item Experimented with real ML applications (matrix factorization, LDA, PageRank), showing up to 50$\times$ speedups.
 % }
 \end{rSubsection}
 
 \begin{rSubsection}{Stale Synchronous Parallel (SSP): Trading Data Freshness for Speed}{}
 {Published at NIPS'13 and ATC'14}{}
-\item SSP is a consistency model for synchronizing parallel ML workers, with tunable data staleness bound.
-\item Designed a parameter server system supporting SSP, called LazyTable.
+\item Designed a parameter server system that supports SSP, a new consistency model for synchronizing parallel ML workers, with tunable data staleness bound.
 \item Experimented with many real ML applications, exploring the tradeoffs of data freshness and speed.
 \end{rSubsection}
 
@@ -119,9 +119,9 @@ Open-sourced at https://github.com/cuihenggang/iterstore}{}
 
 \begin{rSubsection}{MLtuner: Automatic ML tuning}{}
 {Work under submission}{}
-\item Designed the MLtuner system that automatically tunes tunables for ML tasks, including learning rate, training batch size, and data staleness bound.
-\item MLtuner uses efficient snapshotting and optimization-guided online trial-and-error to find good tunable settings.
-\item Experiments with real ML tasks, including deep learning and matrix factorization, show that MLtuner automatically enables performance within 40--178\% of having oracle knowledge of the best tunable settings.
+\item Designed the MLtuner system that automatically tunes ML task tunables, including learning rate, training batch size, and data staleness bound.
+\item Used efficient snapshotting and optimization-guided online trial-and-error, allowing MLtuner to find good tunable settings with little overhead.
+\item Experimented with real ML tasks, including deep learning and matrix factorization, showing that MLtuner automatically enables performance within 40--178\% of optimal tunable settings.
 \end{rSubsection}
 
 \end{rSection}
@@ -132,9 +132,9 @@ Open-sourced at https://github.com/cuihenggang/iterstore}{}
 \begin{rSubsection}{Aperture: Ingest-Time Transformation for Big Time Series Data}{}
 {Internship project at HP Labs, advised by Kimberly Keeton\\
 Published at SoCC'15}{}
-\item Designed a database system, Aperture, for big time series data analytics.
-\item Proposed the \emph{ingest-time transformation} approach that allows Aperture to answer analytical queries with transformed data, achieving much lower latencies.
-\item Experimented with many real timeseries data analytics use cases, including correlation search, IP occurrence query, and anomaly detection, reducing query latencies by over an order of magnitude, with minimal impact on ingest throughput.
+\item Designed Aperture, a database system for big time series data analytics.
+\item Proposed the \emph{ingest-time transformation} approach that allows Aperture to answer analytical queries more efficiently with transformed data.
+\item Experimented with many real use cases (correlation search, IP occurrence query, and anomaly detection), showing query latency reductions by over an order of magnitude, with minimal impact on ingest throughput.
 \end{rSubsection}
 
 \end{rSection}
