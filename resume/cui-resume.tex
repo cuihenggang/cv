@@ -48,18 +48,23 @@
 
 \begin{rSection}{Education}
 
-\textbf{Carnegie Mellon University}, Pittsburgh, PA.\\
-Ph.D., Electrical and Computer Engineering, \hfill \emph{Expected:} May, 2017\\
-\textbf{Advisor:} Greg Ganger\\
-\textbf{Research Topic:} System Support for Large-Scale Machine Learning\\
-\textbf{Thesis:} Exploiting Application Characteristics for Efficient System Support for Large-Scale Machine Learning
+\begin{rSubsection}{Carnegie Mellon University, Pittsburgh, PA.}{}{}{}
+\item[] Ph.D., Electrical and Computer Engineering \hfill \emph{Expected:} May, 2017
+\item Advisor: Greg Ganger
+\item Research Topic: System Support for Large-Scale Machine Learning
+\item Thesis: Exploiting Application Characteristics for Efficient System Support for Large-Scale Machine Learning
+\end{rSubsection}
+% \vspace{-.1in}
 
-\textbf{Carnegie Mellon University}, Pittsburgh, PA.\\
-Master of Science, Electrical and Computer Engineering, \hfill May, 2016
+\begin{rSubsection}{Carnegie Mellon University, Pittsburgh, PA.}{}{}{}
+\item[] Master of Science, Electrical and Computer Engineering, \hfill May, 2016
+\end{rSubsection}
+% \vspace{-.1in}
 
-\textbf{Tsinghua University}, Beijing, China\\
-Bachelor of Science, Electronic Information Science and Technology, \hfill July 2012
-
+\begin{rSubsection}{Tsinghua University, Beijing, China}{}{}{}
+\item[] Bachelor of Science, Electronic Information Science and Technology, \hfill July 2012
+\end{rSubsection}
+% \vspace{-.1in}
 
 \end{rSection}
 %----------------------------------------------------------------------------------------
@@ -85,18 +90,22 @@ Big data Systems & Caffe, GraphLab, MPI, Spark, HBase, OpenTSDB, Hadoop\\
 \begin{rSubsection}{GeePS: Specialized Parameter Server for Deep Learning on GPUs}{}
 {Published at EuroSys'16\\
 Open-sourced at https://github.com/cuihenggang/geeps}{}
+% \small{
 \item Designed a parameter server system for distributed deep learning on a cluster of GPU machines.
 \item Achieved good scalability from single-machine Caffe (13$\times$ more throughput with 16 machines), by overlapping communication with computation.
 \item Support DNNs that do not fit in GPU memory, by swapping data to/from CPU memory in the background.
+% }
 \end{rSubsection}
 
 \begin{rSubsection}{IterStore: Efficient Parameter Server for Iterative ML}{}
 {Published at SoCC'14\\
 Open-sourced at https://github.com/cuihenggang/iterstore}{}
+% \small{
 \item Observed the iterativeness characteristic of many ML applications: same access sequence every iterations.
 \item Designed an efficient method for collecting the repeating access sequence.
 \item Proposed five parameter server optimizations exploiting the collected information, including prefetching, contiguous marshalling-free data storage, locality and numa-aware data placement, and specialized caching policy.
 \item Experiments on three ML applications (matrix factorization, LDA, and PageRank) show that these optimizations reduce completion time by up to 50$\times$.
+% }
 \end{rSubsection}
 
 \begin{rSubsection}{Stale Synchronous Parallel (SSP): Trading Data Freshness for Speed}{}
