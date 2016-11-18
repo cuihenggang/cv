@@ -66,7 +66,7 @@ Bachelor of Science, Electronic Information Science and Technology, \hfill July 
 %	TECHNICAL STRENGTHS SECTION
 %----------------------------------------------------------------------------------------
 
-\begin{rSection}{SKILLS and INTERESTS}
+\begin{rSection}{SKILLS}
 
 \begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
 Programming languages & C$+$$+$, Python, C, Java, CUDA, Matlab, Shell\\
@@ -85,13 +85,18 @@ Big data Systems & Caffe, GraphLab, MPI, Spark, HBase, OpenTSDB, Hadoop\\
 \begin{rSubsection}{GeePS: Specialized Parameter Server for Deep Learning on GPUs}{}
 {Published at EuroSys'16\\
 Open-sourced at https://github.com/cuihenggang/geeps}{}
-\item ...
+\item Designed a parameter server system for distributed deep learning on a cluster of GPU machines.
+\item Achieved good scalability from single-machine Caffe (13$\times$ more throughput with 16 machines), by overlapping communication with computation.
+\item Support DNNs that do not fit in GPU memory, by swapping data to/from CPU memory in the background.
 \end{rSubsection}
 
 \begin{rSubsection}{IterStore: Efficient Parameter Server for Iterative ML}{}
 {Published at SoCC'14\\
 Open-sourced at https://github.com/cuihenggang/iterstore}{}
-\item ...
+\item Observed the iterativeness characteristic of many ML applications: same access sequence every iterations.
+\item Designed an efficient method for collecting the repeating access sequence.
+\item Proposed five parameter server optimizations exploiting the collected information, including prefetching, contiguous marshalling-free data storage, locality and numa-aware data placement, and specialized caching policy.
+\item Experiments on three ML applications (matrix factorization, LDA, and PageRank) show that these optimizations reduce completion time by up to 50$\times$.
 \end{rSubsection}
 
 \begin{rSubsection}{Stale Synchronous Parallel (SSP): Trading Data Freshness for Speed}{}
