@@ -26,7 +26,7 @@
 \newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}} 
 \newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
 \name{HENGGANG CUI} % Your name
-\address{2220A, Collaborative Innovation Center, 5000 Forbes Ave, Pittsburgh, PA, 15213.} % Your address
+% \address{654 Maryland Ave, Apt 8F, Pittsburgh, PA, 15232.} % Your address
 %\address{123 Pleasant Lane \\ City, State 12345} % Your secondary addess (optional)
 \address{(651)403-3366 \\ hengganc@andrew.cmu.edu}  % Your phone number and email
 
@@ -46,27 +46,27 @@
 %	EDUCATION SECTION
 %----------------------------------------------------------------------------------------
 
+\vspace{-.2in}
+
 \begin{rSection}{Education}
 
-\begin{rSubsection}{Carnegie Mellon University, Pittsburgh, PA.}{}{}{}
-\item[] Ph.D., Electrical and Computer Engineering \hfill \emph{Expected:} May, 2017
+\begin{rSubsection}{\hspace{-1em} Carnegie Mellon University, Pittsburgh, PA.}{}{}{}
+\vspace{-0.3em}
+\item[] \hspace{-2em} Ph.D., Electrical and Computer Engineering (GPA: 3.93) \hfill \emph{Expected:} May, 2017
 \item Advisor: Greg Ganger
 \item Research Topic: System Support for Large-Scale Machine Learning
-\item Thesis: Exploiting Application Characteristics for Efficient System Support for Large-Scale Machine Learning
+\item[] \hspace{-2em} Master of Science, Electrical and Computer Engineering \hfill May, 2016
 \end{rSubsection}
-% \vspace{-.1in}
+\vspace{-.1in}
 
-\begin{rSubsection}{Carnegie Mellon University, Pittsburgh, PA.}{}{}{}
-\item[] Master of Science, Electrical and Computer Engineering, \hfill May, 2016
+\begin{rSubsection}{\hspace{-1em} Tsinghua University, Beijing, China}{}{}{}
+\vspace{-0.3em}
+\item[] \hspace{-2em} Bachelor of Science, Electronic Information Science and Technology \hfill July 2012
 \end{rSubsection}
-% \vspace{-.1in}
-
-\begin{rSubsection}{Tsinghua University, Beijing, China}{}{}{}
-\item[] Bachelor of Science, Electronic Information Science and Technology, \hfill July 2012
-\end{rSubsection}
-% \vspace{-.1in}
+\vspace{-.1in}
 
 \end{rSection}
+\vspace{-.05in}
 %----------------------------------------------------------------------------------------
 %	TECHNICAL STRENGTHS SECTION
 %----------------------------------------------------------------------------------------
@@ -74,73 +74,97 @@
 \begin{rSection}{SKILLS}
 
 \begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
-Programming languages & C$+$$+$, Python, C, Java, CUDA, Matlab, Shell\\
-Software Systems & Git, Linux, LaTeX, SVN\\  
-Big data Systems & Caffe, GraphLab, MPI, Spark, HBase, OpenTSDB, Hadoop\\
+\hspace{-1em} Programming languages & C$+$$+$, Python, C, Java, CUDA, Matlab, Shell\\
+\hspace{-1em} Software Systems & Git, Linux, LaTeX, SVN\\  
+\hspace{-1em} Big data Systems & Caffe, GraphLab, MPI, Spark, HBase, OpenTSDB, Hadoop\\
 \end{tabular}
 
 \end{rSection}
+\vspace{-.05in}
 
 %----------------------------------------------------------------------------------------
 %	WORK EXPERIENCE SECTION
 %----------------------------------------------------------------------------------------
 
-\begin{rSection}{RESEARCH PROJECTS}
+\begin{rSection}{PHD THESIS RESEARCH}
 
-\begin{rSubsection}{GeePS: Specialized Parameter Server for Deep Learning on GPUs}{}
+\hspace{-1em} \textbf{Thesis}: Exploiting Application Characteristics for Efficient System Support for Large-Scale Machine Learning
+\vspace{-.1in}
+\begin{list}{\enskip\textbullet}{\leftmargin=2em}
+\item \textbf{Committee}: Greg Ganger, Phil Gibbons, Garth Gibson, Eric Xing, and Derek Murray
+\vspace{-.1in}
+\item \textbf{Thesis Subprojects}: As follows:
+\end{list}
+
+\begin{rSubsection}{\hspace{-1em} GeePS: Specialized Parameter Server for Deep Learning on GPUs}{}
 {Published at EuroSys'16\\
 Open-sourced at https://github.com/cuihenggang/geeps}{}
 % \small{
-\item Designed GeePS, a parameter server system for distributed deep learning on a cluster of GPU machines.
-\item Extended Caffe, a popular deep learning system, to run on distributed machines, by using GeePS.
+\vspace{-0.3em}
+\item Designed GeePS, a parameter server system for distributed deep learning on GPU machines.
+\item Extended Caffe, a popular deep learning system, to run on distributed GPU machines, by using GeePS.
 \item Achieved good scalability from single-machine Caffe (13$\times$ more throughput with 16 machines), by overlapping communication with computation.
-\item Support DNNs that do not fit in GPU memory, by swapping data to/from CPU memory in the background.
+\item Supported DNNs that cannot fit in GPU memory, by swapping data to/from CPU memory in the background.
 % }
 \end{rSubsection}
+\vspace{-.1in}
 
-\begin{rSubsection}{IterStore: Efficient Parameter Server for Iterative ML}{}
-{Published at SoCC'14\\
-Open-sourced at https://github.com/cuihenggang/iterstore}{}
-% \small{
-\item Observed the iterativeness characteristic of many ML applications: same access sequence every iterations.
-\item Designed an efficient method for collecting the repeating access sequence.
-\item Proposed five parameter server optimizations exploiting the collected information, including prefetching, contiguous marshalling-free data storage, locality and numa-aware data placement, and specialized caching policy.
-\item Experimented with real ML applications (matrix factorization, LDA, PageRank), showing up to 50$\times$ speedups.
-% }
-\end{rSubsection}
-
-\begin{rSubsection}{Stale Synchronous Parallel (SSP): Trading Data Freshness for Speed}{}
-{Published at NIPS'13 and ATC'14}{}
-\item Designed a parameter server system that supports SSP, a new consistency model for synchronizing parallel ML workers, with tunable data staleness bound.
-\item Experimented with many real ML applications, exploring the tradeoffs of data freshness and speed.
-\end{rSubsection}
-
-\pagebreak
-
-\begin{rSubsection}{MLtuner: Automatic ML tuning}{}
+\begin{rSubsection}{\hspace{-1em} MLtuner: Automatic ML tuning}{}
 {Work under submission}{}
+\vspace{-0.3em}
 \item Designed the MLtuner system that automatically tunes ML task tunables, including learning rate, training batch size, and data staleness bound.
 \item Used efficient snapshotting and optimization-guided online trial-and-error, allowing MLtuner to find good tunable settings with little overhead.
 \item Experimented with real ML tasks, including deep learning and matrix factorization, showing that MLtuner automatically enables performance within 40--178\% of optimal tunable settings.
 \end{rSubsection}
+\vspace{-.1in}
+
+\begin{rSubsection}{\hspace{-1em} IterStore: Efficient Parameter Server for Iterative ML}{}
+{Published at SoCC'14\\
+Open-sourced at https://github.com/cuihenggang/iterstore}{}
+% \small{
+\vspace{-0.3em}
+\item Observed the iterativeness characteristic of many ML applications: same access sequence every iterations.
+\item Designed the \emph{virtual iteration} method for collecting the repeating access sequence.
+\item Proposed five parameter server optimizations exploiting the collected info, including prefetching, marshalling-free contiguous data layout, locality and numa-aware data placement, and specialized caching policy.
+\item Experimented with real ML applications (matrix factorization, LDA, PageRank), showing up to 50$\times$ speedups.
+% }
+\end{rSubsection}
+\vspace{-.1in}
+
+% \pagebreak
+
+\begin{rSubsection}{\hspace{-1em} Stale Synchronous Parallel (SSP): Trading Data Freshness for Speed}{}
+{Published at NIPS'13 and ATC'14}{}
+\vspace{-0.3em}
+\item Designed a parameter server system that supports SSP, a new consistency model for synchronizing parallel ML workers, with tunable data staleness bound.
+\item Experimented with many real ML applications, exploring the tradeoffs of data freshness and speed.
+\end{rSubsection}
+\vspace{-.1in}
 
 \end{rSection}
+\vspace{-.05in}
 
 
-\begin{rSection}{INTERNSHIP PROJECTS}
+\begin{rSection}{INTERNSHIP}
 
-\begin{rSubsection}{Aperture: Ingest-Time Transformation for Big Time Series Data}{}
-{Internship project at HP Labs, advised by Kimberly Keeton\\
-Published at SoCC'15}{}
+\hspace{-1em} \textbf{HP Labs}, advised by Kimberly Keeton \hfill {May 2014 to Aug 2014}
+
+\vspace{-.1in}
+\begin{rSubsection}{\hspace{-1em} Aperture: Ingest-Time Transformation for Big Time Series Data}{}
+% {Internship project at HP Labs, advised by Kimberly Keeton\\
+{Published at SoCC'15}{}
+\vspace{-0.3em}
 \item Designed Aperture, a database system for big time series data analytics.
 \item Proposed the \emph{ingest-time transformation} approach that allows Aperture to answer analytical queries more efficiently with transformed data.
 \item Experimented with many real use cases (correlation search, IP occurrence query, and anomaly detection), showing query latency reductions by over an order of magnitude, with minimal impact on ingest throughput.
 \end{rSubsection}
 
 \end{rSection}
+\vspace{-.05in}
 
 
 \begin{rSection}{PUBLICATIONS}
+\vspace{-.1in}
 % \begin{bibsection}
     \item
     [1]
@@ -208,5 +232,54 @@ Published at SoCC'15}{}
         2011.
 % \end{bibsection}
 \end{rSection}
+\vspace{-.05in}
+
+% \begin{rSection}{CONFERENCE TALKS}
+% \vspace{-.1in}
+    % \item
+    % [1]
+% GeePS: Scalable Deep Learning on Distributed GPUs with a GPU-Specialized Parameter Server \\
+    % In \emph{EuroSys 2016}, London, UK \hfill Apr 2016
+    % \item
+    % [2]
+% Using Data Transformations for Low-latency Time Series Analysis \\
+    % In \emph{SoCC 2015}, Kohala Coast, HI \hfill Aug 2015
+    % \item
+    % [3]
+% Exploiting Iterative-ness for Parallel ML Computations \\
+    % In \emph{SoCC 2014}, Seattle, WA \hfill Nov 2014
+    % \item
+    % [4]
+% Exploiting Bounded Staleness to Speed Up Big Data Analytics \\
+    % In \emph{ATC 2014}, Philadelphia, PA \hfill Jun 2014
+    % \item
+    % [5]
+% LazyTable: Distributed Machine Learning with the Stale Synchronous Parallel Model \\
+    % In \emph{SOSP 2013 WIP Talk}, Farmington, PA \hfill Nov 2013
+% \vspace{.1in}
+
+% \end{rSection}
+
+\begin{rSection}{COURSES}
+
+\begin{tabular}{ @{} l @{\hspace{6ex}} l }
+\hspace{-1em} 15799a/15410 Advanced Topics in OS & 15712 Advanced Topics in Operating Systems\\
+\hspace{-1em} 10701 Machine Learning & 10780 Graduate Artificial Intelligence\\
+\hspace{-1em} 15799b Advanced Topics in Database & 15746/18746 Storage Systems\\
+\hspace{-1em} 18749 Building Reliable Distributed Systems & 15750 Graduate Algorithms\\
+\end{tabular}
+
+\end{rSection}
+\vspace{-.05in}
+
+\begin{rSection}{TEACHING EXPERIENCE}
+
+\hspace{-1em} \textbf{Teaching Assistance}: 15746/18746 Storage Systems \hfill {Spring 2015}
+
+\vspace{-.1in}
+\hspace{-1em} \textbf{Teaching Assistance}: 15746/18746 Storage Systems \hfill {Fall 2016}
+
+\end{rSection}
+\vspace{-.05in}
 
 \end{document}
