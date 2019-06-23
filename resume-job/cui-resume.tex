@@ -53,7 +53,7 @@
 \begin{rSection}{INTERESTS}
 
 \vspace{-.2in}
-\item[] Autonomous driving, deep learning and large-scale machine learning systems.
+\item[] Autonomous driving, deep learning, computer vision, and large-scale machine learning systems.
 
 \end{rSection}
 \vspace{-.05in}
@@ -99,9 +99,10 @@
 
 \begin{rSubsection}{\hspace{-1em} Uber Advanced Technologies Group, Pittsburgh, PA.}{}{}{}
 \vspace{-0.3em}
-\item[] \hspace{-2em} Senior Autonomy Engineer \hfill June, 2017 to \emph{now}
-\item Conducting research and development on the autonomy software for self-driving vehicles.
-\item Designing machine learning models for predicting the behavior of the other vehicles on the road.
+\item[] \hspace{-2em} {\bf Senior Autonomy Engineer} \hfill June, 2017 to \emph{now}
+\item Conducting research and development for autonomous driving.
+\item Designing and owning the production deep learning model for predicting the trajectories of the other vehicle actors on the road. The model predicts multiple trajectories for each actor with probabilities, uncertainty estimation, and vehicle kinematics constraints.
+\item The works are patented and published in \emph{ICRA 2019} and \emph{NeurIPS 2018 MLITS Workshop}.
 \end{rSubsection}
 \end{rSection}
 \vspace{-.15in}
@@ -120,8 +121,7 @@
 {Published at EuroSys'16, and open-sourced at https://github.com/cuihenggang/geeps}{}
 % \small{
 \vspace{-0.3em}
-\item Designed GeePS, a parameter server system for distributed deep learning on GPU machines.
-\item Extended Caffe, a popular deep learning system, to run on distributed GPU machines, by using GeePS.
+\item Designed GeePS, a distributed parameter server system for distributed deep learning on GPU machines.
 \item Achieved good scalability from single-machine Caffe (13$\times$ more throughput with 16 machines), by overlapping communication with computation.
 \item Supported DNNs that cannot fit in GPU memory, by swapping data to/from CPU memory in the background.
 % }
@@ -134,8 +134,7 @@
 \vspace{-0.3em}
 \item Observed the iterativeness characteristic of many ML applications: same access sequence every iterations.
 \item Designed the \emph{virtual iteration} method for collecting the repeating access sequence.
-\item Proposed five parameter server optimizations exploiting the collected info, including prefetching, marshalling-free contiguous data layout, locality and numa-aware data placement, and specialized caching policy.
-\item Experimented with real ML applications (matrix factorization, LDA, PageRank), showing up to 50$\times$ speedups.
+\item Proposed five parameter server optimizations exploiting the collected info, achieving up to 50$\times$ speedup.
 % }
 \end{rSubsection}
 \vspace{-.1in}
